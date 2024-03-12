@@ -4,7 +4,7 @@ Repository for the Information Systems Project Development Course
 Enterprise LLM application
 
 ## Repository Structure
-- '/doc' - Contains documentation related to the project, including specifications, models, and any additional resources.
+- `/doc` - Contains documentation related to the project, including specifications, models, and any additional resources.
 - `/src` - Houses the source code for the AI Assistant application.
 
 
