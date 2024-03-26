@@ -1,5 +1,12 @@
 <div style="text-align:center">
     <h1>Welcome to DocuMentorAI!</h1>
     <p>The next-generation AI-powered document management and customer insight application.</p>
-    <img src="assets/logo.png" alt="DocuMentorAI Logo">
+    <h1>Send a Prompt to LLM</h1>
+    <input [(ngModel)]="prompt" type="text" placeholder="Enter prompt">
+    <button (click)="sendPrompt()">Send</button>
+    <div *ngIf= "response">
+        <h2>Response:</h2>
+        <p>{{ response | json}}</p>
+    </div>
+    
 </div>
