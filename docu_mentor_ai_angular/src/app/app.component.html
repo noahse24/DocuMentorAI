@@ -1,12 +1,23 @@
-<div style="text-align:center">
+<div style="text-align:center; max-width: 600px; margin: auto; padding-top: 50px;">
     <h1>Welcome to DocuMentorAI!</h1>
     <p>The next-generation AI-powered document management and customer insight application.</p>
-    <h1>Send a Prompt to LLM</h1>
-    <input [(ngModel)]="prompt" type="text" placeholder="Enter prompt">
-    <button (click)="sendPrompt()">Send</button>
-    <div *ngIf= "response">
-        <h2>Response:</h2>
-        <p>{{ response | json}}</p>
+    
+    <div style="margin-top: 30px;">
+        <label for="promptInput" style="font-weight: bold;">Send a Prompt to LLM</label>
+        <input id="promptInput" [(ngModel)]="prompt" type="text" placeholder="Enter prompt" style="margin-top: 10px; width: 100%; padding: 10px;">
+        <button (click)="sendPrompt()" style="margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
     </div>
-    <p><img src="assets/logo.png" alt="DocuMentorAI Logo" style="max-width: 200px; height: auto;"></p>
+
+    <div *ngIf="response" style="margin-top: 20px;">
+        <h2>Response</h2>
+        <p>{{ response | json }}</p>
+    </div>
+
+    <app-document-retrieval></app-document-retrieval>
+    <app-document-display></app-document-display>
+    <app-summary-display [summary]="selectedDocumentSummary"></app-summary-display>
+
+    <div style="margin-top: 30px;">
+        <img src="assets/logo.png" alt="DocuMentorAI Logo" style="max-width: 100%; height: auto;">
+    </div>
 </div>

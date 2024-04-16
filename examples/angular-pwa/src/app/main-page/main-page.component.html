@@ -1,0 +1,14 @@
+<mat-card *ngIf="canRegister">
+  <p>Register at the device to enablepush messages?</p>
+  <button mat-raised-button color="primary" (click)="registerForPush()">Yes</button>
+</mat-card>
+
+<mat-selection-list (selectionChange)="toggleItem($event)">
+  <mat-list-option checkboxPosition="before" *ngFor="let item of items" [value]="item" [selected]="item.active">
+    {{ item.title }}
+  </mat-list-option>
+</mat-selection-list>
+
+<button mat-fab (click)="addItem()" aria-label="Add">
+  <mat-icon>add</mat-icon>
+</button>

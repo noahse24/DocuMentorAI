@@ -1,9 +1,9 @@
 {
-    "/api/*": {
+    "/v1": {
     "target": "https://api.replicate.com",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
-    "pathRewrite": {"^/api": ""}
+    "pathRewrite": {"^/v1": "/v1"}
     }
 }

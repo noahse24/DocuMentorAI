@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav" fixedInViewport="true"
+    [mode]="(isMobileDevice | async) ? 'over' : 'side'"
+    [opened]="!(isMobileDevice | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="">Main Page</a>
+      <a mat-list-item routerLink="feature1">Feature Component 1</a>
+      <a mat-list-item routerLink="feature2">Feature Component 2</a>
+      <a mat-list-item href="assets/about.html" target="_blank">About</a>
+      <a mat-list-item (click)="install()" *ngIf="installPrompt">Install App</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" mat-icon-button (click)="sidenav.toggle()" *ngIf="isMobileDevice | async">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
+      <span>PWA Example App</span><div class="spacer"></div><mat-icon>sync</mat-icon>
+    </mat-toolbar>
+    <main><ng-content></ng-content></main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!--
+Install:
+        <a mat-list-item (click)="install()" *ngIf="installPrompt">Install App</a>
+Sync service:
+  <button mat-icon-button (click)="sync()" aria-label="Start Synchronization">
+        
+
+-->

@@ -1,4 +1,6 @@
 export class Response {
-    constructor(public answer: string, public metadata?: any) {}
-  }
-  
+    content: string;
+    constructor(content: string) {
+    this.content = content;
+    }
+}

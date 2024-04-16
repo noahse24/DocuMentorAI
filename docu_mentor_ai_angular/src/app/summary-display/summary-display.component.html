@@ -1,0 +1,7 @@
+<div *ngIf="summary; else noSummary">
+    <h2>Summary</h2>
+    <p>{{ summary }}</p>
+</div>
+<ng-template #noSummary>
+    <p>No summary available.</p>
+</ng-template>

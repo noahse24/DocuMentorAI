@@ -1,0 +1,13 @@
+<form (ngSubmit)="dialogRef.close(title)">
+  <h1 mat-dialog-title>Add Entry</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [(ngModel)]="title" autocomplete="off" name="title" cdkFocusInitial placeholder="Title">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <span class="spacer"></span>
+    <button type="button" mat-button color="primary" (click)="dialogRef.close()">Cancel</button>
+    <button type="submit" mat-button color="primary" [mat-dialog-close]="title">Add</button>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+<p>Content from example-component</p>
+
+<h2>Customers</h2>
+<ul class="customers" >
+  <li *ngFor="let c of customers">
+    <span class="badge">{{c.id}}</span> {{c.getName()}}
+  </li>
+</ul>

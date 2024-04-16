@@ -7,11 +7,14 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { LlmCommunicationService } from './services/llm-communication.service';
+import { DocumentRetrievalComponent } from './document-retrieval/document-retrieval.component';
+import { DocumentDisplayComponent } from './document-display/document-display.component';
 
 @NgModule({
-//declarations: [
-//    AppComponent
-//],
+declarations: [
+    //AppComponent
+    //DocumentRetrievalComponent
+],
 
 
 imports: [

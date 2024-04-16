@@ -1,0 +1,13 @@
+<div *ngIf="documents.length > 0; else noDocuments">
+    <ul>
+      <!-- Use *ngFor to loop over documents and display them -->
+      <li *ngFor="let document of documents">
+        <h3>{{ document.title }}</h3>
+        <p>{{ document.summary }}</p>
+        <!-- You can add buttons or actions for each document as needed -->
+    </li>
+    </ul>
+</div>
+<ng-template #noDocuments>
+    <p>No documents found.</p>
+</ng-template>

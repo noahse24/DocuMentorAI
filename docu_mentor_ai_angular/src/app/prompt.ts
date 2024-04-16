@@ -1,4 +1,6 @@
 export class Prompt {
-    constructor(public text: string) {}
-  }
-  
+    content: string;
+    constructor(content: string) {
+        this.content = content;
+    }
+}
