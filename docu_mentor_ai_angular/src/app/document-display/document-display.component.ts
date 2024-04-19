@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Document } from '../../../model/document';
 
 @Component({
   selector: 'app-document-display',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './document-display.component.css'
 })
 export class DocumentDisplayComponent implements OnInit {
-  documents: any[] = [];
+  @Input() documents: Document[] = [];
 
   constructor() {}
 

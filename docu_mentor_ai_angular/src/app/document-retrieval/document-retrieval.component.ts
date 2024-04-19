@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LlmCommunicationService } from '../services/llm-communication.service';
 
 @Component({
   selector: 'app-document-retrieval',
@@ -10,14 +11,20 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class DocumentRetrievalComponent {
-  userPrompt: string;
+  prompt: string = '';
 
-  constructor() {
-    this.userPrompt = '';
-  }
+  constructor(private llmService: LlmCommunicationService) {}
 
   onSubmit() {
-    console.log(this.userPrompt);
-    // Implement the retrieval logic here
+    this.llmService.sendPrompt(this.prompt).subscribe({
+      next: (response) => {
+        // Handle the successful response here
+        console.log("Successful prompt");
+      },
+      error: (error) => {
+        // Handle any error here
+        console.log("Unsuccessful prompt");
+      }
+    });  
   }
 }

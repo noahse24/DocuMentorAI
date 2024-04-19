@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Response } from './response';
+import { Document } from '../../model/document';
+import { Summary } from '../../model/summary';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +22,8 @@ import { Response } from './response';
 export class AppComponent {
   prompt: string = '';
   response: any = null;
-  selectedDocumentSummary: string = '';
+  selectedDocumentSummary?: Summary;;
+  documents: Document[]= [];
 
   constructor(private llmService: LlmCommunicationService) {}
 
@@ -34,6 +37,17 @@ export class AppComponent {
       error: (err) => console.error('Error:', err)
     });
   }
+  ngOnInit() {
+    // Temporary mock data for testing
+    this.documents = [
+      { title: 'Document 1', summary: 'Summary of document 1' },
+      { title: 'Document 2', summary: 'Summary of document 2' },
+      // ... more documents
+    ];
+  
+    this.selectedDocumentSummary = { text: 'Detailed summary of a selected document' };
+  }
+
 }
 
 

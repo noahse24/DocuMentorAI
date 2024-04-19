@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.centered-container {
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.input-label {
+    font-weight: bold;
+}
+
+.prompt-input {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.send-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.response-container {
+    margin-top: 20px;
+}
+
+.app-logo {
+    margin-top: 30px;
+    max-width: 100%;
+    height: auto;
+}
