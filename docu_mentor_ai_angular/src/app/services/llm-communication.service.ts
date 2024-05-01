@@ -4,11 +4,39 @@ import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
 //import { Response } from './response';
 
+import Replicate from 'replicate';
+import dotenv from 'dotenv'
+//import replicate from 'replicate';
+
+//otenv.config()
+
 @Injectable({
   providedIn: 'root'
 })
 export class LlmCommunicationService {
 
+  /*
+
+  const replicate = new Replicate({
+    auth: process.env['REPLICATE_API_TOKEN'],
+    userAgent: 'https://www.npmjs.com/package/create-replicate'
+  })
+  const model = '{{MODEL}}'
+  const input = {
+    prompt: "Write ten 5 letter words",
+    max_new_tokens: 1024
+  };
+  
+  const output = await replicate.run("mistralai/mixtral-8x7b-instruct-v0.1", { input });
+  console.log(output.join(""));
+  
+  console.log({ model, input })
+  console.log('Running...')
+  //const output = await replicate.run(model, { input })
+  console.log('Done!', output)
+*/
+
+  
   //private replicateApiUrl = 'https://api.replicate.com/v1/predictions';
   private replicateApiUrl = '/v1/predictions';
 
@@ -18,7 +46,7 @@ export class LlmCommunicationService {
   sendPrompt(prompt: string): Observable<any> {
     
     const headers = new HttpHeaders({
-      'Authorization': 'TOKEN r8_IuOMWBbLYBVLV12ZOGhBP0e2LOXsTLm0v2GZD',
+      'Authorization': 'TOKEN r8_9Fe6W4DEDpVio4NqePMKiLAF2tfJ4Aw1BtIZJ',
       'Content-Type': 'application/json'
     });
 
@@ -38,7 +66,7 @@ export class LlmCommunicationService {
     console.log('Sending request with body:', body); // Log the request body to the console
 
     return this.http.post(this.replicateApiUrl, body, { headers })
-      
+    
 
   /* 
     let mockResponse = {};

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http'; // Ensure HttpClientModule is imported
 import { CommonModule } from '@angular/common';
-
+import { MaterialModule } from './material.module';
+import { AppRoutingModule } from './app.routes';
+import { RouterOutlet } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LlmCommunicationService } from './services/llm-communication.service';
@@ -14,6 +16,7 @@ import { DocumentDisplayComponent } from './document-display/document-display.co
 declarations: [
     //AppComponent
     //DocumentRetrievalComponent
+    //DocumentDisplayComponent
 ],
 
 
@@ -21,7 +24,11 @@ imports: [
     BrowserModule,
     FormsModule, // Add FormsModule here
     HttpClientModule, // Add HttpClientModule here
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    RouterOutlet
 ],
 providers: [LlmCommunicationService]
 //bootstrap: [AppComponent]

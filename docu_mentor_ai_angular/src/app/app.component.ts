@@ -4,17 +4,19 @@ import { LlmCommunicationService } from './services/llm-communication.service';
 import { DocumentRetrievalComponent } from './document-retrieval/document-retrieval.component';
 import { SummaryDisplayComponent } from './summary-display/summary-display.component';
 import { DocumentDisplayComponent } from './document-display/document-display.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Response } from './response';
 import { Document } from '../../model/document';
 import { Summary } from '../../model/summary';
+import { MaterialModule } from './material.module';
+//import { AppRoutingModule } from './app.routes';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule, HttpClientModule, DocumentRetrievalComponent, DocumentDisplayComponent, SummaryDisplayComponent],
+  imports: [CommonModule, RouterOutlet, FormsModule, ReactiveFormsModule, HttpClientModule, DocumentRetrievalComponent, DocumentDisplayComponent, SummaryDisplayComponent, MaterialModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [LlmCommunicationService]

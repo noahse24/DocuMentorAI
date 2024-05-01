@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
     <a class="navbar-brand" href="#">DocuMentorAI</a>
@@ -6,23 +7,72 @@
 
 
 
-<div class="container my-4">
+ <div class="container my-4">
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <!-- Input group with an input field and a button -->
+    <div class="col-md-8">
+        
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Enter prompt" [(ngModel)]="prompt" id="promptInput" aria-label="Prompt input">
-          <button class="btn btn-outline-secondary" type="button" (click)="sendPrompt()">Send</button>
+        <input type="text" class="form-control" placeholder="Enter prompt" [(ngModel)]="prompt" id="promptInput" aria-label="Prompt input">
+        <button class="btn btn-outline-secondary" type="button" (click)="sendPrompt()">Send</button>
         </div>
-      </div>
     </div>
-  </div>
+    </div>
+</div>
 
-  <app-document-display [documents]="documents"></app-document-display>
-  <app-summary-display [summary]="selectedDocumentSummary"></app-summary-display>
+<app-document-display [documents]="documents"></app-document-display>
+<app-summary-display [summary]="selectedDocumentSummary"></app-summary-display>
 
-  <footer class="footer bg-light">
+<footer class="footer bg-light">
     <div class="container text-center py-3">
-      <img src="assets/logo.png" alt="DocuMentorAI Logo" class="footer-logo" style="max-width: 150px; height: auto;">
+    <img src="assets/logo.png" alt="DocuMentorAI Logo" class="footer-logo" style="max-width: 150px; height: auto;">
     </div>
-  </footer>
+</footer> -->
+
+<!-- src/app/app.component.html -->
+
+<!--
+<mat-toolbar color="primary" class="app-header">
+    <mat-toolbar-row>
+    <img src="assets/logo.png" alt="DocuMentorAI Logo" class="logo">
+    <span>Document Analysis Portal</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <a mat-button routerLink="/product-documents">Product Documents</a>
+    <a mat-button routerLink="/legal-documents">Legal Documents</a>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+    </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+-->
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened="true">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/login">Login</a>
+            <a mat-list-item routerLink="/register">Register</a>
+        <a mat-list-item routerLink="/product-documents">Product Documents</a>
+        <a mat-list-item routerLink="/legal-documents">Legal Documents</a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Document Analysis Portal</span>
+      </mat-toolbar>
+    
+
+
+<mat-toolbar color="primary" class="app-footer">
+    © 2024 DocuMentorAI
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<div class="content">
+  <router-outlet></router-outlet> <!-- Placeholder for routed views-->
+</div>
