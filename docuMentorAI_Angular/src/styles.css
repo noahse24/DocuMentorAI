@@ -1,0 +1,15 @@
+/* Ensures that the sidenav container takes full height */
+.mat-drawer-container, .mat-drawer-content, .mat-drawer {
+    height: 100vh;
+}
+
+/* Optional: Makes sure the toolbar stretches full width */
+.mat-toolbar {
+    width: 100%;
+}
+
+.content-wrapper {
+    padding: 20px;
+    width: calc(100% - 200px); /* Adjust based on the sidenav width */
+}
+

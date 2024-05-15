@@ -1,0 +1,10 @@
+<div>
+    <h2>Document List</h2>
+    <ul>
+      <li *ngFor="let document of documents">
+        {{ document.title }} - {{ document.description }}
+        <button (click)="loadDocumentSummary(document)">Get Summary</button>
+        <p *ngIf="document.showSummary">{{ document.summary }}</p>
+      </li>
+    </ul>
+  </div>

@@ -1,0 +1,8 @@
+{
+    "/api": {
+    "target": "https://api.replicate.com",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/api": ""}
+    }
+}

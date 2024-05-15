@@ -1,0 +1,7 @@
+<div>
+    <input type="text" [(ngModel)]="prompt" placeholder="Enter your prompt">
+    <button (click)="retrieveDocuments()">Retrieve Documents</button>
+</div>
+<div *ngIf="output">
+    <p>{{ output }}</p>
+</div>
