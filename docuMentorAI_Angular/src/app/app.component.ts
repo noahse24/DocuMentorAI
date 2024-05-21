@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,4 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 export class AppComponent {
   title = 'docuMentorAI_Angular';
+
+  constructor(public authService: AuthService) {}
 }

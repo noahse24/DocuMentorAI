@@ -1,0 +1,25 @@
+.card {
+    background-color: #babdc3; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    border-radius: 8px;
+    margin: 10px;
+    max-height: 500px; /* Adjust based on your needs */
+    overflow-y: auto;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.card-title {
+    color: #333; /* Dark color for titles for better readability */
+}
+
+.card-text, .card-subtitle {
+    color: #666; /* Slightly lighter color for text and subtitles */
+}

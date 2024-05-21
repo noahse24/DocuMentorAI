@@ -1,0 +1,21 @@
+.sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fill the height of the sidenav */
+  }
+  
+  .mat-nav-list {
+    flex: 1 0 auto; /* Allow navigation to grow and shrink as needed */
+  }
+
+.logo-container {
+    flex-shrink: 0;
+    margin-top: auto;  /* Pushes the logo to the bottom of the sidenav */
+    padding: 20px;
+    text-align: center;  /* Centers the logo */
+  }
+  
+  .logo-container img {
+    max-width: 150px;  /* Adjust the size of the logo */
+    height: auto;
+  }

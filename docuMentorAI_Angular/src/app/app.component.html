@@ -1,32 +1,23 @@
-<!--
-<h1 class="title">{{ title }}</h1>
-
-<nav>
-<a routerLink="/login">Login</a>
-<a routerLink="/test">Test</a>
-<a routerLink="/documents">Documents</a>
-<a routerLink="/documentRetrieval">DocumentRetrieval</a>
-</nav>
-
-
-<router-outlet></router-outlet>
--->
-
 <mat-sidenav-container class="sidenav-container" style="height: 100vh;">
-    <mat-sidenav #sidenav mode="side" opened="true" style="width: 200px;">
-      <mat-nav-list>
-        <a mat-list-item routerLink="/login">Login</a>
-        <a mat-list-item routerLink="/register">Register</a>
-        <a mat-list-item routerLink="/test">Test</a>
-        <a mat-list-item routerLink ="/documents">Documents</a>
-        <!-- Other links -->
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <mat-toolbar color="primary">Your App Name</mat-toolbar>
-      <div class="content-wrapper">
-        <router-outlet></router-outlet>
+  <mat-sidenav #sidenav mode="side" opened="true" style="width: 200px;">
+    <mat-nav-list>
+      <a *ngIf="!(authService.isLoggedIn | async)" mat-list-item routerLink="/login">Login/Register</a>
+      <a *ngIf="authService.isLoggedIn | async" mat-list-item routerLink="/documents">All Documents</a>
+      <a *ngIf="authService.isLoggedIn | async" mat-list-item routerLink="/documentRetrieval">Document Search</a>
+      <mat-divider></mat-divider>
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="DocuMentorAI Logo">
       </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      DocuMentorAI
+      <span style="flex: 1 1 auto;"></span>
+      <button *ngIf="authService.isLoggedIn | async" mat-button (click)="authService.logout()">Logout</button>
+    </mat-toolbar>
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

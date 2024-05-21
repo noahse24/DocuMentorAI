@@ -1,7 +1,59 @@
+<!--
 <div>
     <input type="text" [(ngModel)]="prompt" placeholder="Enter your prompt">
-    <button (click)="retrieveDocuments()">Retrieve Documents</button>
+    <button (click)="onSubmit()">Retrieve Documents</button>
 </div>
-<div *ngIf="output">
-    <p>{{ output }}</p>
+
+  <div *ngIf="documents.length > 0" class="container mt-4">
+    <div class="row">
+      <div *ngFor="let doc of documents" class="col-md-4 mb-4">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ doc.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Category: {{ doc.category }}</h6>
+            <p class="card-text">{{ doc.content1 }}</p>
+            <small>Created: {{ doc.created_at | date:'medium' }}</small>
+        </div>
+        </div>
+    </div>
+    </div>
 </div>
+
+  <div *ngIf="documents.length === 0">
+    <p>No documents found.</p>
+</div>
+-->
+
+<div>
+    <input type="text" [(ngModel)]="prompt" placeholder="Enter your prompt">
+    <button (click)="onSubmit()">Retrieve Documents</button>
+  </div>
+  
+  <div *ngIf="documents.length > 0" class="container mt-4">
+    <div class="row">
+      <div *ngFor="let doc of documents" class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ doc.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ doc.category }}</h6>
+            <div *ngIf="doc.showContent">
+              <p class="card-text">{{ doc.content1 }}</p>
+            </div>
+            <div *ngIf="doc.showSummary">
+              <p class="card-text">{{ doc.summary }}</p>
+            </div>
+            <button class="btn btn-primary" (click)="toggleDocument(doc)">
+              {{ doc.showContent ? 'Hide Document' : 'Show Document' }}
+            </button>
+            <button class="btn btn-secondary" (click)="toggleSummary(doc)">
+              {{ doc.showSummary ? 'Hide Summary' : 'Show Summary' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="documents.length === 0">
+    <p>No documents found.</p>
+  </div>

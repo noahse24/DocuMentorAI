@@ -1,0 +1,51 @@
+/*
+.dashboard-wrapper {
+    padding: 20px;
+    color: #fbf7f7;
+  }
+  
+  .quick-guide {
+    margin-top: 20px;
+    background-color: #292727;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .user-actions {
+    margin-top: 20px;
+  }
+  */
+
+  .dashboard-container {
+    padding: 50px;
+    color: #efe5e5;
+  }
+  
+  h1, h2 {
+    color: #1976d2; /* Primary color */
+  }
+  
+  .welcome-message, .getting-started, .document-types {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #7b7979; /* Light grey background for better readability */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  strong {
+    color: #555; /* Darker font color for emphasis */
+  }
+  
+  em {
+    font-style: italic;
+    color: #1976d2; /* Matching primary color for internal links or important elements */
+  }
+  

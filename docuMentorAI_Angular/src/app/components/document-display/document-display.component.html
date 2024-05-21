@@ -1,10 +1,47 @@
-<div>
-    <h2>Document List</h2>
-    <ul>
-      <li *ngFor="let document of documents">
-        {{ document.title }} - {{ document.description }}
-        <button (click)="loadDocumentSummary(document)">Get Summary</button>
-        <p *ngIf="document.showSummary">{{ document.summary }}</p>
-      </li>
-    </ul>
+<!--
+<div class="container mt-4">
+  <h2 class="mb-3">Document List</h2>
+  <div class="row">
+    <div *ngFor="let document of documents" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ document.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Category: {{ document.category }}</h6>
+          <p class="card-text" *ngIf="document.showSummary">{{ document.summary }}</p>
+          <button class="btn btn-primary" (click)="loadDocumentSummary(document)">
+            {{ document.showSummary ? 'Hide Summary' : 'Get Summary' }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+-->
+
+<div class="container mt-4">
+  <h2>Document List</h2>
+  <div class="row">
+    <div *ngFor="let doc of documents" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ doc.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ doc.category }}</h6>
+          <div *ngIf="doc.showContent">
+            <p class="card-text">{{ doc.content1 }}</p>
+          </div>
+          <div *ngIf="doc.showSummary">
+            <p class="card-text">{{ doc.summary }}</p>
+          </div>
+          <button class="btn btn-primary" (click)="toggleDocument(doc)">
+            {{ doc.showContent ? 'Hide Document' : 'Show Document' }}
+          </button>
+          <button class="btn btn-secondary" (click)="toggleSummary(doc)">
+            {{ doc.showSummary ? 'Hide Summary' : 'Show Summary' }}
+          </button>
+          <p *ngIf="doc.showSummary && doc.summary">{{ doc.summary }}</p>
+          <p *ngIf="doc.showSummary && !doc.summary">Loading summary...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

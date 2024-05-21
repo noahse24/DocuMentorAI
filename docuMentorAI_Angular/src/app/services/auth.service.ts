@@ -1,21 +1,62 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public apiUrl = 'http://localhost:3000/api';  // The base URL of your API
+  public apiUrl = 'http://localhost:3000';  // The base URL of your API
 
-  constructor(private http: HttpClient) { }
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials);
+  constructor(private http: HttpClient, private router: Router) { }
+
+  // Login
+  
+  login(email: string, password1: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, password1 }).pipe(
+      tap(response => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userName', response.userName);
+        this.loggedIn.next(true);
+      })
+    );
+  }  
+  
+
+  // Logout
+  logout() {
+    localStorage.removeItem('token');
+    this.loggedIn.next(false);
+    this.router.navigate(['/login']);
   }
   
-  // If you plan to implement registration:
-  register(user: { email: string; password: string; username?: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, user);
+  // Registration
+  register(username: string, email: string, password1: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, { username, email, password1 })
+      .pipe(
+        tap(response => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userName', response.userName);
+        this.loggedIn.next(true);
+        catchError(error => throwError(() => new Error(error.error.message || "Registration failed due to server error")))
+        })
+      );
+  }
+  
+
+  private setSession(authResult: any): void {
+    localStorage.setItem('token', authResult.token);
+    this.loggedIn.next(true);
+    this.router.navigate(['/dashboard']);
+  }
+
+  
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
   }
 }

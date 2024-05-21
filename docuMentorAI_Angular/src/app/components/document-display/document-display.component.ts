@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentService } from '../../services/document.service';
+import { AppDocument } from '../../model/AppDocument';
 
 @Component({
   selector: 'app-document-display',
@@ -7,7 +8,7 @@ import { DocumentService } from '../../services/document.service';
   styleUrls: ['./document-display.component.css']
 })
 export class DocumentDisplayComponent implements OnInit {
-  documents: any[] = [];
+  documents: AppDocument[] = [];
 
   constructor(private documentService: DocumentService) { }
 
@@ -17,12 +18,10 @@ export class DocumentDisplayComponent implements OnInit {
 
   loadDocuments(): void {
     this.documentService.getDocuments().subscribe({
-      next: (data) => {
-        this.documents = data;
+      next: (documents) => {
+        this.documents = documents.map(doc => ({ ...doc, showContent: false, showSummary: false }));
       },
-      error: (err) => {
-        console.error('Failed to load documents', err);
-      }
+      error: (error) => console.error('Error retrieving documents:', error)
     });
   }
 
@@ -41,5 +40,23 @@ export class DocumentDisplayComponent implements OnInit {
       document.showSummary = !document.showSummary;  // Toggle summary visibility
     }
   }
-}
 
+  toggleDocument(document: AppDocument): void {
+    document.showContent = !document.showContent;
+    document.showSummary = false;
+  }
+
+  toggleSummary(document: AppDocument): void {
+    if (!document.summary) { // Check if summary is already fetched
+      this.documentService.summarizeDocument("Summarize this text: " + document.content1).subscribe({
+        next: (response) => {
+          document.summary = response.summary;
+          document.showSummary = true;
+        },
+        error: (error) => console.error('Error generating summary:', error)
+      });
+    } else {
+      document.showSummary = !document.showSummary; // Toggle visibility
+    }
+  }
+}

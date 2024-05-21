@@ -1,0 +1,32 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/assets/bg-image.jpg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  mat-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .full-width-input {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .submit-button, .toggle-button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .toggle-button {
+    margin-top: 10px;
+    background-color: #5d0cce;
+    color: #3f51b5;
+  }
+  

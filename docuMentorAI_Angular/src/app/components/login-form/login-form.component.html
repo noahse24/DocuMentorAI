@@ -1,38 +1,76 @@
 <!--
-<div class="login-container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" formControlName="email" id="email" required>
-        <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched">
-        Email is required.
-        </div>
-        <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">
-        Enter a valid email.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" formControlName="password" id="password" required>
-        <div *ngIf="loginForm.get('password')?.errors?.['required']&& loginForm.get('password')?.touched">
-        Password is required.
-        </div>
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
-</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  
+  
+  <mat-form-field *ngIf="!isLoginMode" appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" placeholder="Enter your username">
+  </mat-form-field>
+
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Enter your email">
+  </mat-form-field>
+
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" placeholder="Enter your password">
+  </mat-form-field>
+
+  
+  <button mat-raised-button color="primary" type="submit">
+    {{ isLoginMode ? 'Login' : 'Register' }}
+  </button>
+
+  
+  <button mat-button type="button" (click)="onSwitchMode()">
+    Switch to {{ isLoginMode ? 'Register' : 'Login' }}
+  </button>
+</form>
 -->
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="Enter your email">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" placeholder="Enter your password">
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" type="submit">Login</button>
-  </form>
+<div class="login-container">
+  <mat-card>
+    <mat-card-title>{{ isLoginMode ? 'Login' : 'Register' }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Username Field (visible only in registration mode) -->
+        <mat-form-field *ngIf="!isLoginMode" appearance="fill" class="full-width-input">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" placeholder="Enter your username">
+        </mat-form-field>
+
+        <!-- Email Field -->
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter your email">
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter your password">
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" type="submit" class="submit-button">
+          {{ isLoginMode ? 'Login' : 'Register' }}
+        </button>
+
+        <!-- Toggle Mode Button -->
+        <button mat-stroked-button (click)="onSwitchMode()" class="toggle-button">
+          Switch to {{ isLoginMode ? 'Register' : 'Login' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
