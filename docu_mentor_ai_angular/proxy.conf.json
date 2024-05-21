@@ -1,9 +1,0 @@
-{
-    "/v1": {
-    "target": "https://api.replicate.com",
-    "secure": false,
-    "changeOrigin": true,
-    "pathRewrite": {"^/v1": "/v1"}
-    }
-}
-
