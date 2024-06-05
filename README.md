@@ -4,17 +4,40 @@
 
 Repository for the Information Systems Project Development Course
 Enterprise LLM application.
-DocuMentorAI aims to enable users to manage and interact with documents and customer data.It provides tools for document retrieval and summarization, customer information retrieval, and actionable suggestions, all aimed at enhancing productivity and decision-making processes.
+DocuMentorAI aims to enable users to manage and interact with documents (Product + Legal Documents).It provides tools for document retrieval and summarization, aimed at enhancing productivity and decision-making processes.
 
 ### Main Features
 - Secure Authentification
 - Document Retrieval and Summarization
-- Customer Insights
-- User-Friendly Interface (chat-based)
+- User-Friendly Interface
 
-## Repository Structure
-- `/doc` - Contains documentation related to the project, including specifications, models, and any additional resources.
-- `/src` - Houses the source code for the AI Assistant application.
+## Installation
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- Angular CLI (v12 or higher)
+- PostgreSQL
+
+### Installation
+
+1. Clone the repository:
+   - git clone <repository-url>
+   - cd <repository-directory>/client
+2. Install dependencies:
+   - npm install
+  
+## Deployment
+
+1. Build angular application:
+   - 'ng serve'
+2. Start server:
+   - cd <repository-directory>/server
+   - 'node server.js'
+   - Server is running and accessible at 'http://localhost:3000'
+
+
 
 
 ## How to Use
