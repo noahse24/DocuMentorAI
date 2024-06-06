@@ -1,6 +1,6 @@
 // app.module.ts
 
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routes';
@@ -15,6 +15,7 @@ import { DocumentDisplayComponent } from './components/document-display/document
 import { DocumentRetrievalComponent } from './components/document-retrieval/document-retrieval.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material/material.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,13 @@ imports: [
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
 ],
 providers: [
     provideAnimationsAsync()

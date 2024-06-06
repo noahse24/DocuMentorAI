@@ -8,6 +8,13 @@ const axios = require('axios');
 
 const app = express();
 const port = 3000; // Ensure this matches what your Angular service expects
+if (process.env.NODE_ENV !== 'test') {
+    const port = process.env.PORT_ANGULAR || 3000;
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
+
 const bcrypt = require('bcryptjs');
 const pool = require('./dataBase');
 const jwt = require('jsonwebtoken');
@@ -15,6 +22,7 @@ const jwt = require('jsonwebtoken');
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api', router);
+//const authRoutes = require('./routes/authRoutes');
 //app.use('/api', searchDocumentsRouter);
 
 const JWT_SECRET = process.env.JWT_SECRET
@@ -54,6 +62,7 @@ app.post('/generate-document', async (req, res) => {
     res.status(500).send('Failed to generate document');
     }
 });
+
 
 // API Registration Requests
 app.post('/register', async (req, res) => {
@@ -124,11 +133,12 @@ router.post('/search-documents', async (req, res) => {
 app.get('/documents', (req, res) => {
     pool.query('SELECT * FROM documents', (error, results) => {
     if (error) {
-        return res.status(400).json({ error });
+        return res.status(400).json({ error: "Database error occurred" });
     }
     res.status(200).json(results.rows);
     });
 });
+
 
 app.post('/generate-summary', async (req, res) => {
 console.log('Using API Token:', process.env.REPLICATE_API_TOKEN);
@@ -146,26 +156,31 @@ try {
         frequency_penalty: req.body.frequency_penalty || 0
     };
 
+    let summary = '';
     const events = replicate.stream("mistralai/mixtral-8x7b-instruct-v0.1", { input });
-
-    let fullResponse = '';
-
     for await (const event of events) {
         console.log(event.toString());
-        fullResponse += event.toString();
+        summary += event.toString();
+        
     }
 
-    res.send({ message: fullResponse }); // Send the complete response back to the client
+    res.send({ message: summary }); // Send the complete response back to the client
+    //res.json({ success: true, summary: summary });
+    //loadDocumentSummary();
 
     } catch (error) {
-    console.error('Failed to generate document:', error);
-    res.status(500).send('Failed to generate document');
+    console.error('Failed to generate summary:', error);
+    res.status(500).send('Failed to generate summary');
     }
 });
 
 
 
 // Server response
+/*
 app.listen(port, () => {
 console.log(`Server running on port ${port}`);
 });
+*/
+// Export app
+module.exports = { app, pool };

@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { AppDocument } from '../model/AppDocument';
 import { ApiRequest } from '../model/ApiRequest';
 import { ApiResponse } from '../model/ApiResponse';
+import { DocumentDisplayComponent } from '../components/document-display/document-display.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,16 @@ export class DocumentService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  
   getDocumentSummary(documentId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${documentId}/summary`);
+    return this.http.post<ApiResponse>('http://localhost:3000/generate-summary', { documentId })
+    .pipe(map(response => response.summary));
   }
 
   retrieveDocuments(type: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/documents/${type}`);
   }
+
 
   /*
   summarizeDocument(content: string): Observable<any> {
@@ -45,7 +49,7 @@ export class DocumentService {
     };
 
     return this.http.post<ApiResponse>('http://localhost:3000/generate-summary', body).pipe(
-      map(response =>  response.message)
+      map(response =>  response.summary)
   );
 }
   

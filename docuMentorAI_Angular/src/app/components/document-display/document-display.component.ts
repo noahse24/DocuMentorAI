@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentService } from '../../services/document.service';
 import { AppDocument } from '../../model/AppDocument';
+import { ApiResponse } from '../../model/ApiResponse';
 
 @Component({
   selector: 'app-document-display',
@@ -25,11 +26,12 @@ export class DocumentDisplayComponent implements OnInit {
     });
   }
 
-  loadDocumentSummary(document: any): void {
+
+  loadDocumentSummary(document: AppDocument): void {
     if (!document.summary) {
       this.documentService.getDocumentSummary(document.id).subscribe({
-        next: (summary) => {
-          document.summary = summary.text;  // Adjust depending on API response
+        next: (ApiResponse) => {
+          document.summary = ApiResponse.summary;  // Adjust depending on API response
           document.showSummary = true;  // Show summary upon fetching it
         },
         error: (err) => {
@@ -45,18 +47,28 @@ export class DocumentDisplayComponent implements OnInit {
     document.showContent = !document.showContent;
     document.showSummary = false;
   }
-
+/*
+  toggleSummary(document: AppDocument): void {
+    if (!document.summary) {
+        this.loadDocumentSummary(document);  // Call to load summary if not loaded
+    } else {
+        document.showSummary = !document.showSummary;
+    }
+  }
+  */
   toggleSummary(document: AppDocument): void {
     if (!document.summary) { // Check if summary is already fetched
       this.documentService.summarizeDocument("Summarize this text: " + document.content1).subscribe({
         next: (response) => {
-          document.summary = response.summary;
+          document.summary = response;
           document.showSummary = true;
         },
         error: (error) => console.error('Error generating summary:', error)
       });
+      //this.loadDocumentSummary(document);
     } else {
       document.showSummary = !document.showSummary; // Toggle visibility
     }
   }
+  
 }

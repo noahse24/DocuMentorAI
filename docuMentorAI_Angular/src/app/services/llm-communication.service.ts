@@ -30,7 +30,7 @@ export class LlmCommunicationService {
     };
 
     return this.http.post<ApiResponse>(this.apiUrl, body).pipe(
-      map(response =>  response.message)
+      map(response =>  response.summary)
   );
 }
 }

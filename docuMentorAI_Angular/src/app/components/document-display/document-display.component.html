@@ -38,8 +38,8 @@
           <button class="btn btn-secondary" (click)="toggleSummary(doc)">
             {{ doc.showSummary ? 'Hide Summary' : 'Show Summary' }}
           </button>
-          <p *ngIf="doc.showSummary && doc.summary">{{ doc.summary }}</p>
-          <p *ngIf="doc.showSummary && !doc.summary">Loading summary...</p>
+          <p *ngIf="doc.showSummary && !doc.summary">{{ doc.summary }}</p>
+          <p *ngIf="doc.showSummary && doc.summary">Loading summary...</p>
         </div>
       </div>
     </div>
